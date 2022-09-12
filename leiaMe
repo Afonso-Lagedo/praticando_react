@@ -1,7 +1,9 @@
-INSTALL
+###INSTALL
 
 node version LTS / npm
 
 npx create-react-app NOME
 
+
+###RUN
 IN PASTE npm start
