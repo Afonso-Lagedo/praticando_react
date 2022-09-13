@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
 function App (){
 
@@ -7,6 +7,18 @@ function App (){
     'first task',
     'second task'
   ]);
+
+  useEffect(()=>{
+    const taskStorage = localStorage.getItem('@task');
+
+    if(taskStorage){
+      setTask(JSON.parse(taskStorage));
+    }
+  },[])//login page execute function
+
+  useEffect(()=>{
+    localStorage.setItem('@task', JSON.stringify(task));
+  },[task]);//if update TASK execute function
 
   function save(e){
     e.preventDefault();
