@@ -1,30 +1,58 @@
 import {useState} from 'react';
 
-import TestName from "./components/Name";
-
 function App (){
-  const [person, setPerson] = useState('Test'); //Test is initial State
 
-  function changeName(){
-    setPerson('Afonso');
+  const [name, setName]= useState('');
+  const [email, setEmail]= useState('');
+  const [age, setAge]= useState('');
+
+  const [user, setUser] = useState({});
+
+  function save(e){
+    e.preventDefault();
+
+    alert('Success');
+
+    setUser({
+      name:name,
+      age:age,
+      email:email,
+    })
   }
 
   return(
     <div>
-      <h1>Component App</h1><br/>
-      <h2>Hello: {person}</h2>
-      <button onClick={changeName}>
-        update name
-      </button>
+      <h1>Users</h1>
+
+      <form onSubmit={save}>
+        <input placeholder='name'
+        value={name}
+        onChange={(e)=> setName(e.target.value)}
+        />
+        <br></br>
+        
+        <input placeholder='email'
+        value={email}
+        onChange={(e)=>setEmail(e.target.value)}
+        />
+        <br></br>
+        
+        <input placeholder='age'
+        value={age}
+        onChange={(e)=>{setAge(e.target.value)}}
+        />
+        <br></br>
+
+        <button type='submit'>Save</button>
+      </form>
+      <br></br>
+      <div>
+        <span>Welcome: {user.name}</span><br></br>
+        <span>Age: {user.age}</span><br></br>
+        <span>email: {user.email}</span>
+      </div>
     </div>
   );
 }
 
 export default App;
-
-
-function Name(){
-  return(
-    <span>Name: Afonso</span>
-  );
-}

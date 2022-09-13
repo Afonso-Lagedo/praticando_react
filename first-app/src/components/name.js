@@ -1,4 +1,3 @@
-
 function TestName({person}){
   return(
     <span>Name: {person}</span>
@@ -6,5 +5,3 @@ function TestName({person}){
 }
 
 export default TestName;
-
-
