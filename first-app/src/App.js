@@ -2,22 +2,17 @@ import {useState} from 'react';
 
 function App (){
 
-  const [name, setName]= useState('');
-  const [email, setEmail]= useState('');
-  const [age, setAge]= useState('');
-
-  const [user, setUser] = useState({});
+  const [input, setInput]= useState('');
+  const [task, setTask] = useState([
+    'first task',
+    'second task'
+  ]);
 
   function save(e){
     e.preventDefault();
 
-    alert('Success');
-
-    setUser({
-      name:name,
-      age:age,
-      email:email,
-    })
+    setTask([...task, input]);
+    setInput('');
   }
 
   return(
@@ -25,21 +20,9 @@ function App (){
       <h1>Users</h1>
 
       <form onSubmit={save}>
-        <input placeholder='name'
-        value={name}
-        onChange={(e)=> setName(e.target.value)}
-        />
-        <br></br>
-        
-        <input placeholder='email'
-        value={email}
-        onChange={(e)=>setEmail(e.target.value)}
-        />
-        <br></br>
-        
-        <input placeholder='age'
-        value={age}
-        onChange={(e)=>{setAge(e.target.value)}}
+        <input placeholder='task'
+        value={input}
+        onChange={(e)=> setInput(e.target.value)}
         />
         <br></br>
 
@@ -47,9 +30,11 @@ function App (){
       </form>
       <br></br>
       <div>
-        <span>Welcome: {user.name}</span><br></br>
-        <span>Age: {user.age}</span><br></br>
-        <span>email: {user.email}</span>
+        <ul>
+          {task.map( t =>(
+            <li key={t}>{t}</li>
+          ))}
+        </ul>
       </div>
     </div>
   );
